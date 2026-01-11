@@ -75,7 +75,6 @@
 }
 
 @theme inline {
-  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
   --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-instrument);
   --font-sans: var(--font-geist-sans);
