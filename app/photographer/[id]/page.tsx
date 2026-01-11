@@ -25,7 +25,7 @@ const photographersData: Photographer[] = [
     specialty: "Smurf",
     bio: "Dadaji and Inter IIT Photography Captain",
     quote: "The landscape is a canvas where light and shadow tell eternal stories.",
-    image: "/landscape-photographer.jpg",
+    image: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768140969/mohitdp_cdo6bk.jpg",
     works: [
       { id: 1, src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135375/DSC09647_1_ocd5fb.jpg", title: "Mountain Vista" },
       { id: 2, src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135371/IMG20230423075313_dpjo9x.jpg", title: "Nature's Canvas" },
@@ -37,9 +37,9 @@ const photographersData: Photographer[] = [
   },
   {
     id: 2,
-    name: "Maria Rodriguez",
-    specialty: "Portrait & Fashion",
-    bio: "Specializing in intimate portraits that reveal the story behind every face and emotion.",
+    name: "Rahul Ranwa",
+    specialty: "Smurf",
+    bio: "Papaji and Inter IIT Filmmaking Captain",
     quote: "Every face tells a story; I am simply the storyteller.",
     image: "/fashion-photographer.jpg",
     works: [
@@ -53,9 +53,9 @@ const photographersData: Photographer[] = [
   },
   {
     id: 3,
-    name: "James Wilson",
-    specialty: "Street Photography",
-    bio: "Documenting candid moments of urban life and human connection in the city.",
+    name: "Abhinav Bhardwaj",
+    specialty: "Oompa Loompa",
+    bio: "Kya matlab abhi maine socha nahi",
     quote: "The street is a canvas painted by humanity every single day.",
     image: "/street-photographer.jpg",
     works: [
@@ -69,9 +69,9 @@ const photographersData: Photographer[] = [
   },
   {
     id: 4,
-    name: "Sophie Laurent",
-    specialty: "Wedding & Events",
-    bio: "Creating timeless memories by capturing the most important moments of your life.",
+    name: "Pawan Manignandan",
+    specialty: "Oompa Loompa",
+    bio: "V-Log is better then S-Log",
     quote: "Love stories deserve to be told with beauty and authenticity.",
     image: "/wedding-photographer.jpg",
     works: [
@@ -85,9 +85,9 @@ const photographersData: Photographer[] = [
   },
   {
     id: 5,
-    name: "Raj Patel",
-    specialty: "Wildlife & Nature",
-    bio: "On a mission to capture the untamed beauty of wildlife in their natural habitats.",
+    name: "Musaib Bin Bashir",
+    specialty: "Oompa Loompa",
+    bio: "Bohat time lag gaye ye banane mai",
     quote: "Wildlife photography is a conversation between patience and wonder.",
     image: "/wildlife-photographer.jpg",
     works: [
@@ -99,22 +99,7 @@ const photographersData: Photographer[] = [
       { id: 6, src: "/2.webp", title: "Untamed" },
     ],
   },
-  {
-    id: 6,
-    name: "Luna Martinez",
-    specialty: "Fine Art & Conceptual",
-    bio: "Exploring the boundaries of reality through experimental and fine art photography.",
-    quote: "Photography is a bridge between reality and imagination.",
-    image: "/fine-art-photographer.jpg",
-    works: [
-      { id: 1, src: "/7.webp", title: "Geometric Harmony" },
-      { id: 2, src: "/2.webp", title: "Abstract Thought" },
-      { id: 3, src: "/4.webp", title: "Conceptual Space" },
-      { id: 4, src: "/6.webp", title: "Surreal Moment" },
-      { id: 5, src: "/1.webp", title: "Artistic Vision" },
-      { id: 6, src: "/3.webp", title: "Dream Logic" },
-    ],
-  },
+  
 ]
 
 export default function PhotographerPage() {

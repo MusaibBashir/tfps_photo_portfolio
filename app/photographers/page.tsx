@@ -17,7 +17,7 @@ const photographers: Photographer[] = [
     name: "Mohit Kumar Majhi",
     specialty: "Smurf",
     bio: "Dadaji and Inter IIT Photography Captain",
-    image: "/landscape-photographer.jpg",
+    image: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768140969/mohitdp_cdo6bk.jpg",
   },
   {
     id: 2,
