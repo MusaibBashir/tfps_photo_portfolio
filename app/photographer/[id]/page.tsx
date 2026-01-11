@@ -1,8 +1,10 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { useParams } from "next/navigation"
+import PhotoLightbox from "@/components/PhotoLightbox"
 
 interface Photographer {
   id: number
@@ -99,13 +101,29 @@ const photographersData: Photographer[] = [
       { id: 6, src: "/2.webp", title: "Untamed" },
     ],
   },
-  
+
 ]
 
 export default function PhotographerPage() {
   const params = useParams()
   const id = Array.isArray(params.id) ? params.id[0] : params.id
   const photographer = photographersData.find((p) => p.id === Number.parseInt(id))
+
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
+
+  const openLightbox = (index: number) => {
+    setCurrentPhotoIndex(index)
+    setLightboxOpen(true)
+  }
+
+  const closeLightbox = () => {
+    setLightboxOpen(false)
+  }
+
+  const navigateToPhoto = (index: number) => {
+    setCurrentPhotoIndex(index)
+  }
 
   if (!photographer) {
     return (
@@ -167,9 +185,10 @@ export default function PhotographerPage() {
         <h2 className="text-xl uppercase tracking-widest mb-12 text-white/80">Portfolio</h2>
 
         <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-          {photographer.works.map((work) => (
+          {photographer.works.map((work, index) => (
             <div
               key={work.id}
+              onClick={() => openLightbox(index)}
               className="break-inside-avoid group relative overflow-hidden bg-white/5 border border-white/10 hover:border-white/30 transition-all duration-300 cursor-pointer"
             >
               <div className="overflow-hidden">
@@ -187,6 +206,21 @@ export default function PhotographerPage() {
           ))}
         </div>
       </section>
+
+      {/* Lightbox */}
+      {lightboxOpen && photographer && (
+        <PhotoLightbox
+          photos={photographer.works.map(work => ({
+            id: work.id,
+            title: work.title,
+            src: work.src,
+            aspect: "landscape"
+          }))}
+          currentIndex={currentPhotoIndex}
+          onClose={closeLightbox}
+          onNavigate={navigateToPhoto}
+        />
+      )}
     </main>
   )
 }
