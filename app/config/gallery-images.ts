@@ -1,17 +1,16 @@
 export const galleryImages = [
-  { src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1767450191/StreetBattleMB2_mehd4y.png", alt: "Urban Street Photography 1" },
-  { src: "/dramatic-landscape-mountain-peak.jpg", alt: "Landscape Photography 2" },
-  { src: "/professional-headshot.png", alt: "Portrait Photography 3" },
-  { src: "/nature-wildlife-animal-photography.jpg", alt: "Wildlife Photography 4" },
-  { src: "/abstract-geometric-shapes-colors.jpg", alt: "Abstract Photography 5" },
-  { src: "/minimalist-architecture-building.jpg", alt: "Architecture Photography 6" },
-  { src: "/moody-dark-atmospheric-night.jpg", alt: "Night Photography 7" },
-  { src: "/vibrant-colorful-sunset-ocean.jpg", alt: "Color Photography 8" },
+  { src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1767450191/StreetBattleMB2_mehd4y.png", alt: "1" },
+  { src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135375/DSC09647_1_ocd5fb.jpg", alt: "2" },
+  { src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135371/IMG20230423075313_dpjo9x.jpg", alt: "3" },
+  { src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135371/DSC01680_xa8ah5.jpg", alt: "4" },
+  { src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135365/IMG20231119062911-01_d87ajb.jpg", alt: "5" },
+  { src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135476/ranwamoment_20260103_201715_833_taqtni.webp", alt: "6" },
+  { src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135474/ranwamoment_20260103_201607_210_yzzaj7.webp", alt: "7" },
+  { src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135471/ranwamoment_20260103_201631_233_iglogz.webp", alt: "8" },
+  { src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135477/ranwamoment_20260103_201725_211_awmong.webp", alt: "9" },
+  { src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135044/1000293311_xqwzba.jpg", alt: "10" },
+  { src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135044/1000289790_nwjdso.jpg", alt: "11" },
+  { src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768136042/DSC_5970-3_tj2qkq.jpg", alt: "12" },
+  { src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768136037/20250511_144952_2_pruqr6.jpg", alt: "13" },
+  { src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768136024/20250119_153620_wgyqii.jpg", alt: "14" },
 ]
-
-// Easy swap for Cloudinary URLs:
-// export const galleryImages = [
-//   { src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1767450191/StreetBattleMB2_mehd4y.png", alt: "Urban Street Photography 1" },
-//   { src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1767450191/image2_xxxxx.png", alt: "Landscape Photography 2" },
-//   // ... etc
-// ]
