@@ -6,14 +6,13 @@ import { ArrowLeft } from "lucide-react"
 import PhotoLightbox from "@/components/PhotoLightbox"
 
 const workImages = [
-  { id: 1, title: "Urban Landscape", category: "Wildlife", photographer: "Mohit Kumar Majhi", src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135364/IMG_20250710_180738227_BURST000_COVER_2_qopsin.jpg", aspect: "landscape" },
-  { id: 2, title: "Ethereal Moment", category: "Portrait", photographer: "Rahul Ranwa", src: "/2.webp", aspect: "portrait" },
-  { id: 3, title: "Nature's Canvas", category: "Landscape", photographer: "Abhinav Bhardwaj", src: "/3.webp", aspect: "landscape" },
-  { id: 4, title: "Street Life", category: "Street", photographer: "Pawan Manignandan", src: "/4.webp", aspect: "square" },
-  { id: 5, title: "Golden Hour", category: "Landscape", photographer: "Musaib Bin Bashir", src: "/5.webp", aspect: "landscape" },
-  { id: 6, title: "Human Stories", category: "Portrait", photographer: "Mohit Kumar Majhi", src: "/6.webp", aspect: "portrait" },
-  { id: 7, title: "Geometric Harmony", category: "Architecture", photographer: "Rahul Ranwa", src: "/7.webp", aspect: "square" },
-  { id: 8, title: "Intimate Moments", category: "Portrait", photographer: "Abhinav Bhardwaj", src: "/8.webp", aspect: "portrait" },
+  { id: 1, title: "Boundaries", category: "Landscape", photographer: "Mohit Kumar Majhi", src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135364/IMG_20250710_180738227_BURST000_COVER_2_qopsin.jpg", aspect: "landscape" },
+  { id: 2, title: "Bricks", category: "Portrait", photographer: "Mohit Kumar Majhi", src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135474/ranwamoment_20260103_201607_210_yzzaj7.webp", aspect: "portrait" },
+  { id: 3, title: "Addictive Fire", category: "Portrait", photographer: "Rahul Ranwa", src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135476/ranwamoment_20260103_201715_833_taqtni.webp", aspect: "landscape" },
+  { id: 4, title: "Innocence", category: "Portrait", photographer: "Rahul Ranwa", src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135375/DSC09647_1_ocd5fb.jpg", aspect: "landscape" },
+  { id: 5, title: "Rage", category: "Portrait", photographer: "Mohit Kumar Majhi", src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135364/IMG_20241221_042810243_HDR_PORTRAIT_wfzzae.jpg", aspect: "landscape" },
+  { id: 6, title: "Winter Soul", category: "Landscape", photographer: "Mohit Kumar Majhi", src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135365/IMG20231119062911-01_d87ajb.jpg", aspect: "landscape" },
+  { id: 7, title: "Radiant Smile", category: "Portrait", photographer: "Mohit Kumar Majhi", src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135375/DSC09618_1_a5nctv.jpg", aspect: "landscape" },
 ]
 
 const categories = ["All", "Architecture", "Portrait", "Landscape", "Street", "Wildlife"]
@@ -44,7 +43,7 @@ export default function WorkPage() {
       {/* Header */}
       <div className="sticky top-0 z-40 border-b border-white/10 bg-black/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-6 md:px-8 py-6 flex items-center justify-between">
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Work</h1>
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Featured</h1>
           <Link
             href="/"
             className="flex items-center gap-2 text-sm uppercase tracking-widest hover:text-gray-400 transition-colors"

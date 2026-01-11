@@ -24,7 +24,7 @@ export const photographersData: Photographer[] = [
         works: [
             {
                 id: 1,
-                title: "Mountain Vista",
+                title: "Questioning Eyes",
                 src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135375/DSC09647_1_ocd5fb.jpg",
                 aspect: "landscape"
             },
@@ -36,19 +36,19 @@ export const photographersData: Photographer[] = [
             },
             {
                 id: 3,
-                title: "Alpine Meadow",
+                title: "Posession Game",
                 src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135371/DSC01680_xa8ah5.jpg",
                 aspect: "landscape"
             },
             {
                 id: 5,
-                title: "Alpine Meadow",
+                title: "Rainbow of Sea",
                 src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135363/IMG_20250930_174359350_HDR_h9wbfi.jpg",
                 aspect: "portrait"
             },
             {
                 id: 4,
-                title: "Alpine Meadow",
+                title: "Winter Soul",
                 src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135365/IMG20231119062911-01_d87ajb.jpg",
                 aspect: "landscape"
             }
@@ -65,14 +65,26 @@ export const photographersData: Photographer[] = [
         works: [
             {
                 id: 1,
-                title: "Fashion Portrait",
-                src: "/4.webp",
+                title: "Sinful Fire",
+                src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135476/ranwamoment_20260103_201715_833_taqtni.webp",
                 aspect: "portrait"
             },
             {
                 id: 2,
-                title: "Urban Style",
-                src: "/5.webp",
+                title: "Wisdom Meet",
+                src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135474/ranwamoment_20260103_201644_704_o6lues.webp",
+                aspect: "landscape"
+            },
+            {
+                id: 1,
+                title: "Fashion Portrait",
+                src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135471/ranwamoment_20260103_201631_233_iglogz.webp",
+                aspect: "portrait"
+            },
+            {
+                id: 2,
+                title: "Till Death Do Us Part",
+                src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135470/ranwamoment_20260103_201757_533_z1xvjo.webp",
                 aspect: "landscape"
             }
         ]
@@ -82,7 +94,7 @@ export const photographersData: Photographer[] = [
         name: "Abhinav Bhardwaj",
         specialty: "Oompa Loompa",
         bio: "Kya matlab abhi maine socha nahi",
-        quote: "The street is a canvas painted by humanity every single day.",
+        quote: "Quote TBA",
         image: "/street-photographer.jpg",
         works: [
             {
@@ -104,7 +116,7 @@ export const photographersData: Photographer[] = [
         name: "Pawan Manignandan",
         specialty: "Oompa Loompa",
         bio: "V-Log is better then S-Log",
-        quote: "Love stories deserve to be told with beauty and authenticity.",
+        quote: "Quote TBA",
         image: "/wedding-photographer.jpg",
         works: [
             {
@@ -120,7 +132,7 @@ export const photographersData: Photographer[] = [
         name: "Musaib Bin Bashir",
         specialty: "Oompa Loompa",
         bio: "Bohat time lag gaye ye banane mai",
-        quote: "Wildlife photography is a conversation between patience and wonder.",
+        quote: "Quote TBA",
         image: "/wildlife-photographer.jpg",
         works: [
             {

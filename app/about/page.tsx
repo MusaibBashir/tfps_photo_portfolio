@@ -27,13 +27,13 @@ export default function AboutPage() {
           <div>
             <h2 className="text-3xl md:text-4xl font-light mb-6">About TFPS X Photography</h2>
             <p className="text-white/70 leading-relaxed mb-6">
-              TFPS X Photography is a collective of passionate photographers united by a shared vision to capture the
-              world's most compelling visual stories. Founded on the principles of artistic expression and technical
-              excellence, our club brings together photographers of all skill levels to collaborate, learn, and push
+              TFPS X Photography is a collective of passionate photographers united by a shared vision to capture
+              compelling visual stories. Founded on the principles of artistic expression and technical
+              excellence, our society brings together photographers of all skill levels to collaborate, learn, and push
               creative boundaries.
             </p>
             <p className="text-white/70 leading-relaxed">
-              Through exhibitions, workshops, and collaborative projects, we celebrate the art of photography while
+              Through photowalks, workshops, and collaborative projects, we celebrate the art of photography while
               fostering a community dedicated to visual storytelling and innovation.
             </p>
           </div>
@@ -83,12 +83,12 @@ export default function AboutPage() {
           <div className="border-t border-white/10 pt-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div>
-                <div className="text-4xl font-light mb-2">50+</div>
+                <div className="text-4xl font-light mb-2">150+</div>
                 <p className="text-sm uppercase tracking-widest text-white/60">Active Members</p>
               </div>
               <div>
-                <div className="text-4xl font-light mb-2">15+</div>
-                <p className="text-sm uppercase tracking-widest text-white/60">Annual Exhibitions</p>
+                <div className="text-4xl font-light mb-2"></div>
+                <p className="text-sm uppercase tracking-widest text-white/60">Inter IIT Gold</p>
               </div>
               <div>
                 <div className="text-4xl font-light mb-2">10+</div>
@@ -100,7 +100,7 @@ export default function AboutPage() {
           {/* CTA Section */}
           <div className="border-t border-white/10 pt-12 text-center space-y-6">
             <p className="text-white/70 leading-relaxed">
-              Interested in joining our community or collaborating with TFPS? We'd love to hear from you.
+              Interested in joining our society or collaborating with TFPS? We'd love to hear from you.
             </p>
             <button className="inline-block border border-white px-8 py-3 uppercase tracking-widest text-sm font-medium hover:bg-white hover:text-black transition-all duration-300">
               Get In Touch

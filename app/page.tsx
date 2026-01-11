@@ -26,8 +26,8 @@ export default function PortfolioHome() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-8 text-sm font-medium tracking-widest uppercase">
-          <Link href="/work" className="hover:text-gray-400 transition-colors">
-            Work
+          <Link href="/featured" className="hover:text-gray-400 transition-colors">
+            Featured
           </Link>
           <Link href="/photographers" className="hover:text-gray-400 transition-colors">
             Photographers
@@ -51,9 +51,12 @@ export default function PortfolioHome() {
           </button>
         </div>
 
-        <button className="hidden md:block border border-white/30 px-4 py-2 text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+        <a
+          href="mailto:tfps.iitkgp@gmail.com"
+          className="hidden md:block border border-white/30 px-4 py-2 text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all"
+        >
           Contact
-        </button>
+        </a>
       </nav>
 
       {/* Hamburger Menu Overlay */}
@@ -69,11 +72,11 @@ export default function PortfolioHome() {
 
           <div className="flex flex-col items-center space-y-8 text-2xl font-medium tracking-widest uppercase">
             <Link
-              href="/work"
+              href="/featured"
               onClick={() => setMenuOpen(false)}
               className="text-white hover:text-gray-400 transition-colors"
             >
-              Work
+              Featured
             </Link>
             <Link
               href="/about"
@@ -82,12 +85,13 @@ export default function PortfolioHome() {
             >
               About
             </Link>
-            <button
+            <a
+              href="mailto:tfps.iitkgp@gmail.com"
               onClick={() => setMenuOpen(false)}
               className="text-white hover:text-gray-400 transition-colors"
             >
               Contact
-            </button>
+            </a>
           </div>
         </div>
       )}
@@ -142,11 +146,12 @@ export default function PortfolioHome() {
             </div>
             <div className="space-y-6 text-gray-400 font-light leading-relaxed">
               <p>
-                ABCDEFGHIJKLMNOP....Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+                TFPS X Photography is a collective of passionate photographers united by a shared vision to capture
+                compelling visual stories. Founded on the principles of artistic expression and technical
+                excellence, our society brings together photographers of all skill levels to collaborate, learn, and push
+                creative boundaries.
               </p>
-              <p>sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>Dear Scriptwriters, please kuch acha likdo isko replace karne ke liye</p>
 
               <div className="pt-8 flex gap-6">
                 <a
@@ -157,25 +162,6 @@ export default function PortfolioHome() {
                 >
                   <Instagram className="w-5 h-5" />
                 </a>
-                <Link
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-5 h-5 cursor-pointer hover:text-white transition-colors"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="w-5 h-5"
-                  >
-                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 21.5 2.1a10.9 10.9 0 0 1-4.53 1.3A4.48 4.48 0 0 0 16 3.13a4.48 4.48 0 0 0 1.66 4.07A9.42 9.42 0 0 1 8.8 13.5a4.48 4.48 0 0 0 1.3 3.18A4.48 4.48 0 0 0 11 21.38a4.48 4.48 0 0 0 4.07 1.66A9.42 9.42 0 0 1 21.8 13.5a4.48 4.48 0 0 0 3.18-1.3A4.48 4.48 0 0 0 22.4 8.75a4.48 4.48 0 0 0-1.3-4.07A10.9 10.9 0 0 1 23 3z" />
-                  </svg>
-                </Link>
                 <Link
                   href="mailto:tfps.iitkgp@gmail.com"
                   className="w-5 h-5 cursor-pointer hover:text-white transition-colors"
@@ -195,30 +181,6 @@ export default function PortfolioHome() {
                   </svg>
                 </Link>
               </div>
-            </div>
-          </div>
-
-          {/* Simple Recent Works Grid */}
-          <div className="mt-32">
-            <div className="flex justify-between items-end mb-12">
-              <h3 className="text-xl uppercase tracking-widest">Selected Works</h3>
-              <a href="#" className="text-sm text-gray-500 hover:text-white transition-colors">
-                View Archive
-              </a>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* Using the first 3 images for the static grid */}
-              {heroImages.slice(0, 3).map((img, i) => (
-                <div key={i} className="aspect-[3/4] overflow-hidden group relative cursor-pointer">
-                  <img
-                    src={img.src || "/placeholder.svg"}
-                    alt={img.alt}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
-                  />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
-                </div>
-              ))}
             </div>
           </div>
         </div>

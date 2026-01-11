@@ -1,7 +1,8 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, ArrowUpDown } from "lucide-react"
 
 interface Photographer {
   id: number
@@ -50,26 +51,49 @@ const photographers: Photographer[] = [
 ]
 
 export default function PhotographersPage() {
+  const [sortOrder, setSortOrder] = useState<"default" | "asc" | "desc">("default")
+
+  const sortedPhotographers = [...photographers].sort((a, b) => {
+    if (sortOrder === "default") return 0
+    if (sortOrder === "asc") return a.name.localeCompare(b.name)
+    return b.name.localeCompare(a.name)
+  })
+
+  const toggleSort = () => {
+    if (sortOrder === "default") setSortOrder("asc")
+    else if (sortOrder === "asc") setSortOrder("desc")
+    else setSortOrder("default")
+  }
+
   return (
     <main className="bg-black min-h-screen text-white">
       {/* Header */}
       <div className="sticky top-0 z-40 border-b border-white/10 bg-black/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-6 md:px-8 py-6 flex items-center justify-between">
           <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Photographers</h1>
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-sm uppercase tracking-widest hover:text-gray-400 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back
-          </Link>
+          <div className="flex items-center gap-6">
+            <button
+              onClick={toggleSort}
+              className="flex items-center gap-2 text-sm uppercase tracking-widest hover:text-white text-white/60 transition-colors"
+            >
+              <ArrowUpDown className="w-4 h-4" />
+              Sort: {sortOrder === "default" ? "Default" : sortOrder === "asc" ? "A-Z" : "Z-A"}
+            </button>
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-sm uppercase tracking-widest hover:text-gray-400 transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back
+            </Link>
+          </div>
         </div>
       </div>
 
       {/* Photographers Grid */}
       <section className="max-w-4xl mx-auto px-6 md:px-8 py-16">
         <div className="space-y-6">
-          {photographers.map((photographer) => (
+          {sortedPhotographers.map((photographer) => (
             <Link
               key={photographer.id}
               href={`/photographer/${photographer.id}`}
