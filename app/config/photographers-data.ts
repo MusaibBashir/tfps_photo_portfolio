@@ -76,14 +76,14 @@ export const photographersData: Photographer[] = [
                 aspect: "landscape"
             },
             {
-                id: 1,
-                title: "Fashion Portrait",
+                id: 3,
+                title: "Till Death Do Us Part",
                 src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135471/ranwamoment_20260103_201631_233_iglogz.webp",
                 aspect: "portrait"
             },
             {
-                id: 2,
-                title: "Till Death Do Us Part",
+                id: 4,
+                title: "Thinking it Over",
                 src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135470/ranwamoment_20260103_201757_533_z1xvjo.webp",
                 aspect: "landscape"
             }
