@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-import InfiniteGallery from "/components/InfiniteGallery" // Adjust path as needed
+import InfiniteGallery from "../components/InfiniteGallery"
 import { ArrowDown, Instagram } from "lucide-react"
 import Link from "next/link"
 import { galleryImages } from "./config/gallery-images"
