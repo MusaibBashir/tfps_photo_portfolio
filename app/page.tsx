@@ -1,8 +1,8 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import InfiniteGallery from "../components/InfiniteGallery"
-import { ArrowDown, Instagram } from "lucide-react"
+import { ArrowDown, Instagram, Menu, X } from "lucide-react"
 import Link from "next/link"
 import { galleryImages } from "./config/gallery-images"
 
@@ -12,6 +12,7 @@ const heroImages = galleryImages
 
 export default function PortfolioHome() {
   const aboutRef = useRef<HTMLDivElement>(null)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const scrollToContent = () => {
     aboutRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -20,9 +21,11 @@ export default function PortfolioHome() {
   return (
     <main className="bg-black min-h-screen text-white selection:bg-white selection:text-black">
       {/* --- NAVIGATION --- */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-8 py-6 flex justify-between items-center mix-blend-difference">
-        <div className="text-xl font-bold tracking-tighter uppercase">TFPS X Photography</div>
-        <div className="flex space-x-4 md:space-x-8 text-xs md:text-sm font-medium tracking-widest uppercase">
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-8 py-6 flex justify-between items-center mix-blend-difference">
+        <div className="text-lg md:text-xl font-bold tracking-tighter uppercase">TFPS X Photography</div>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex space-x-8 text-sm font-medium tracking-widest uppercase">
           <Link href="/work" className="hover:text-gray-400 transition-colors">
             Work
           </Link>
@@ -33,10 +36,61 @@ export default function PortfolioHome() {
             About
           </Link>
         </div>
+
+        {/* Mobile Navigation */}
+        <div className="flex md:hidden items-center gap-4">
+          <Link href="/photographers" className="text-xs font-medium tracking-widest uppercase hover:text-gray-400 transition-colors">
+            Photographers
+          </Link>
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="p-2 hover:text-gray-400 transition-colors"
+            aria-label="Menu"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+        </div>
+
         <button className="hidden md:block border border-white/30 px-4 py-2 text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">
           Contact
         </button>
       </nav>
+
+      {/* Hamburger Menu Overlay */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-md flex flex-col items-center justify-center">
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="absolute top-6 right-6 p-2 text-white hover:text-gray-400 transition-colors"
+            aria-label="Close menu"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          <div className="flex flex-col items-center space-y-8 text-2xl font-medium tracking-widest uppercase">
+            <Link
+              href="/work"
+              onClick={() => setMenuOpen(false)}
+              className="text-white hover:text-gray-400 transition-colors"
+            >
+              Work
+            </Link>
+            <Link
+              href="/about"
+              onClick={() => setMenuOpen(false)}
+              className="text-white hover:text-gray-400 transition-colors"
+            >
+              About
+            </Link>
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="text-white hover:text-gray-400 transition-colors"
+            >
+              Contact
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* --- HERO SECTION (3D Gallery) --- */}
       <section className="relative w-full h-screen overflow-hidden">
@@ -67,10 +121,12 @@ export default function PortfolioHome() {
 
         {/* Scroll Indicator */}
         <div
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce cursor-pointer pointer-events-auto"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 animate-bounce cursor-pointer pointer-events-auto"
           onClick={scrollToContent}
         >
-          <ArrowDown className="w-6 h-6 text-white/50 hover:text-white transition-colors" />
+          <div className="bg-black/40 backdrop-blur-sm rounded-full p-3 border border-white/20">
+            <ArrowDown className="w-8 h-8 md:w-6 md:h-6 text-white hover:text-white/80 transition-colors" />
+          </div>
         </div>
       </section>
 
