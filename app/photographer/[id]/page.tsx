@@ -21,18 +21,18 @@ interface Photographer {
 const photographersData: Photographer[] = [
   {
     id: 1,
-    name: "Alex Chen",
-    specialty: "Landscape & Nature",
-    bio: "Capturing raw beauty of untouched landscapes and natural moments across the globe.",
+    name: "Mohit Kumar Majhi",
+    specialty: "Smurf",
+    bio: "Dadaji and Inter IIT Photography Captain",
     quote: "The landscape is a canvas where light and shadow tell eternal stories.",
     image: "/landscape-photographer.jpg",
     works: [
-      { id: 1, src: "/1.webp", title: "Mountain Vista" },
-      { id: 2, src: "/3.webp", title: "Nature's Canvas" },
-      { id: 3, src: "/5.webp", title: "Golden Hour" },
-      { id: 4, src: "/7.webp", title: "Geometric Harmony" },
-      { id: 5, src: "/2.webp", title: "Ethereal Moment" },
-      { id: 6, src: "/4.webp", title: "Street Life" },
+      { id: 1, src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135375/DSC09647_1_ocd5fb.jpg", title: "Mountain Vista" },
+      { id: 2, src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135371/IMG20230423075313_dpjo9x.jpg", title: "Nature's Canvas" },
+      { id: 3, src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135371/DSC01680_xa8ah5.jpg", title: "Golden Hour" },
+      { id: 4, src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135365/IMG20231119062911-01_d87ajb.jpg", title: "Geometric Harmony" },
+      { id: 5, src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135364/IMG_20250710_180738227_BURST000_COVER_2_qopsin.jpg", title: "Ethereal Moment" },
+      { id: 6, src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135364/IMG_20241229_221210827_bgpf4j.jpg", title: "Street Life" },
     ],
   },
   {

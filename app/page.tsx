@@ -86,15 +86,15 @@ export default function PortfolioHome() {
             </div>
             <div className="space-y-6 text-gray-400 font-light leading-relaxed">
               <p>
-                My work explores the relationship between light, texture, and time. Using a combination of digital
-                manipulation and raw analog techniques, I strive to create images that feel like memories rather than
-                documentation.
+                ABCDEFGHIJKLMNOP....Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
+                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
               </p>
-              <p>Based in Tokyo, available worldwide for editorial and commercial commissions.</p>
+              <p>sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
               <div className="pt-8 flex gap-6">
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/tfps.iitkgp/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-5 h-5 cursor-pointer hover:text-white transition-colors"
@@ -121,7 +121,7 @@ export default function PortfolioHome() {
                   </svg>
                 </Link>
                 <Link
-                  href="mailto:info@tfpsxphotography.com"
+                  href="mailto:tfps.iitkgp@gmail.com"
                   className="w-5 h-5 cursor-pointer hover:text-white transition-colors"
                 >
                   <svg
@@ -170,7 +170,7 @@ export default function PortfolioHome() {
 
       {/* --- FOOTER --- */}
       <footer className="py-12 border-t border-white/10 text-center text-xs text-gray-600 uppercase tracking-widest">
-        &copy; 2026 TFPS X Photography. All Rights Reserved.
+        &copy; 2026 TFPS. All Rights Reserved.
       </footer>
     </main>
   )
