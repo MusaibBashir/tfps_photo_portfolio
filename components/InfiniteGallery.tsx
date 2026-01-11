@@ -314,18 +314,58 @@ function GalleryScene({
     [speed],
   )
 
+  // Touch event handling for mobile devices
+  const touchStart = useRef<{ y: number; time: number } | null>(null)
+
+  const handleTouchStart = useCallback((event: TouchEvent) => {
+    if (event.touches.length === 1) {
+      touchStart.current = {
+        y: event.touches[0].clientY,
+        time: Date.now()
+      }
+    }
+  }, [])
+
+  const handleTouchMove = useCallback(
+    (event: TouchEvent) => {
+      event.preventDefault() // Prevent page scroll
+      if (touchStart.current && event.touches.length === 1) {
+        const deltaY = touchStart.current.y - event.touches[0].clientY
+        setScrollVelocity((prev) => prev + deltaY * 0.05 * speed)
+        setAutoPlay(false)
+        lastInteraction.current = Date.now()
+
+        touchStart.current = {
+          y: event.touches[0].clientY,
+          time: Date.now()
+        }
+      }
+    },
+    [speed],
+  )
+
+  const handleTouchEnd = useCallback(() => {
+    touchStart.current = null
+  }, [])
+
   useEffect(() => {
     const canvas = document.querySelector("canvas")
     if (canvas) {
       canvas.addEventListener("wheel", handleWheel, { passive: false })
+      canvas.addEventListener("touchstart", handleTouchStart, { passive: false })
+      canvas.addEventListener("touchmove", handleTouchMove, { passive: false })
+      canvas.addEventListener("touchend", handleTouchEnd, { passive: false })
       document.addEventListener("keydown", handleKeyDown)
 
       return () => {
         canvas.removeEventListener("wheel", handleWheel)
+        canvas.removeEventListener("touchstart", handleTouchStart)
+        canvas.removeEventListener("touchmove", handleTouchMove)
+        canvas.removeEventListener("touchend", handleTouchEnd)
         document.removeEventListener("keydown", handleKeyDown)
       }
     }
-  }, [handleWheel, handleKeyDown])
+  }, [handleWheel, handleKeyDown, handleTouchStart, handleTouchMove, handleTouchEnd])
 
   useEffect(() => {
     const interval = setInterval(() => {

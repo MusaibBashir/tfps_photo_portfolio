@@ -6,7 +6,7 @@ import { ArrowLeft } from "lucide-react"
 import PhotoLightbox from "@/components/PhotoLightbox"
 
 const workImages = [
-  { id: 1, title: "Urban Landscape", category: "Architecture", photographer: "Mohit Kumar Majhi", src: "/1.webp", aspect: "landscape" },
+  { id: 1, title: "Urban Landscape", category: "Wildlife", photographer: "Mohit Kumar Majhi", src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135364/IMG_20250710_180738227_BURST000_COVER_2_qopsin.jpg", aspect: "landscape" },
   { id: 2, title: "Ethereal Moment", category: "Portrait", photographer: "Rahul Ranwa", src: "/2.webp", aspect: "portrait" },
   { id: 3, title: "Nature's Canvas", category: "Landscape", photographer: "Abhinav Bhardwaj", src: "/3.webp", aspect: "landscape" },
   { id: 4, title: "Street Life", category: "Street", photographer: "Pawan Manignandan", src: "/4.webp", aspect: "square" },
@@ -16,7 +16,7 @@ const workImages = [
   { id: 8, title: "Intimate Moments", category: "Portrait", photographer: "Abhinav Bhardwaj", src: "/8.webp", aspect: "portrait" },
 ]
 
-const categories = ["All", "Architecture", "Portrait", "Landscape", "Street"]
+const categories = ["All", "Architecture", "Portrait", "Landscape", "Street", "Wildlife"]
 
 export default function WorkPage() {
   const [selectedCategory, setSelectedCategory] = useState("All")

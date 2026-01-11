@@ -22,7 +22,7 @@ export default function PortfolioHome() {
       {/* --- NAVIGATION --- */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-8 py-6 flex justify-between items-center mix-blend-difference">
         <div className="text-xl font-bold tracking-tighter uppercase">TFPS X Photography</div>
-        <div className="hidden md:flex space-x-8 text-sm font-medium tracking-widest uppercase">
+        <div className="flex space-x-4 md:space-x-8 text-xs md:text-sm font-medium tracking-widest uppercase">
           <Link href="/work" className="hover:text-gray-400 transition-colors">
             Work
           </Link>
@@ -33,7 +33,7 @@ export default function PortfolioHome() {
             About
           </Link>
         </div>
-        <button className="border border-white/30 px-4 py-2 text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+        <button className="hidden md:block border border-white/30 px-4 py-2 text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">
           Contact
         </button>
       </nav>
@@ -86,8 +86,8 @@ export default function PortfolioHome() {
             </div>
             <div className="space-y-6 text-gray-400 font-light leading-relaxed">
               <p>
-                ABCDEFGHIJKLMNOP....Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
+                ABCDEFGHIJKLMNOP....Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
                 in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
               </p>
               <p>sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
