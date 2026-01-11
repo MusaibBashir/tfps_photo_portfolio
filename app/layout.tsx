@@ -1,10 +1,9 @@
 import type React from "react"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Inter } from "next/font/google";
 import { Instrument_Serif } from "next/font/google"
 import "./globals.css"
 
-const geist = Geist({ subsets: ["latin"] })
-const geistMono = Geist_Mono({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"] });
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument",
   subsets: ["latin"],
@@ -19,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geist.className} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}>
+      <body className={`${inter.className} ${instrumentSerif.variable} antialiased`}>
         {children}
       </body>
     </html>
