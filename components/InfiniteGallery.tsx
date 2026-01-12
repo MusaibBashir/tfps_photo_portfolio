@@ -113,9 +113,9 @@ const createClothMaterial = () => {
         float distanceFromCenter = length(pos.xy);
         float curve = distanceFromCenter * distanceFromCenter * curveIntensity;
         
-        float ripple1 = sin(pos.x * 2.0 + scrollForce * 3.0) * 0.02;
-        float ripple2 = sin(pos.y * 2.5 + scrollForce * 2.0) * 0.015;
-        float clothEffect = (ripple1 + ripple2) * abs(curveIntensity) * 2.0;
+        float ripple1 = sin(pos.x * 2.0 + scrollForce * 3.0) * 0.008;
+        float ripple2 = sin(pos.y * 2.5 + scrollForce * 2.0) * 0.006;
+        float clothEffect = (ripple1 + ripple2) * abs(curveIntensity) * 1.0;
         
         float flagWave = 0.0;
         if (isHovered > 0.5) {

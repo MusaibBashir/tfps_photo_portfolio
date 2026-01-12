@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { ArrowLeft, ArrowUpDown } from "lucide-react"
+import { ArrowLeft, ArrowUpDown, Search } from "lucide-react"
 import { getPhotographers, Photographer } from "@/lib/data"
 
 export default function PhotographersPage() {
   const [photographers, setPhotographers] = useState<Photographer[]>([])
   const [loading, setLoading] = useState(true)
-  const [sortOrder, setSortOrder] = useState<"default" | "asc" | "desc">("default")
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc")
+  const [searchQuery, setSearchQuery] = useState("")
 
   useEffect(() => {
     loadPhotographers()
@@ -21,39 +22,54 @@ export default function PhotographersPage() {
     setLoading(false)
   }
 
-  const sortedPhotographers = [...photographers].sort((a, b) => {
-    if (sortOrder === "default") return 0
-    if (sortOrder === "asc") return a.name.localeCompare(b.name)
-    return b.name.localeCompare(a.name)
-  })
+  const filteredAndSortedPhotographers = [...photographers]
+    .filter((photographer) =>
+      photographer.name.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .sort((a, b) => {
+      if (sortOrder === "asc") return a.name.localeCompare(b.name)
+      return b.name.localeCompare(a.name)
+    })
 
   const toggleSort = () => {
-    if (sortOrder === "default") setSortOrder("asc")
-    else if (sortOrder === "asc") setSortOrder("desc")
-    else setSortOrder("default")
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc")
   }
 
   return (
     <main className="bg-black min-h-screen text-white">
       {/* Header */}
       <div className="sticky top-0 z-40 border-b border-white/10 bg-black/80 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 py-6 flex items-center justify-between">
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Photographers</h1>
-          <div className="flex items-center gap-6">
-            <button
-              onClick={toggleSort}
-              className="flex items-center gap-2 text-sm uppercase tracking-widest hover:text-white text-white/60 transition-colors"
-            >
-              <ArrowUpDown className="w-4 h-4" />
-              Sort: {sortOrder === "default" ? "Default" : sortOrder === "asc" ? "A-Z" : "Z-A"}
-            </button>
-            <Link
-              href="/"
-              className="flex items-center gap-2 text-sm uppercase tracking-widest hover:text-gray-400 transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back
-            </Link>
+        <div className="max-w-7xl mx-auto px-6 md:px-8 py-6">
+          <div className="flex items-center justify-between mb-6">
+            <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Photographers</h1>
+            <div className="flex items-center gap-6">
+              <button
+                onClick={toggleSort}
+                className="flex items-center gap-2 text-sm uppercase tracking-widest hover:text-white text-white/60 transition-colors"
+              >
+                <ArrowUpDown className="w-4 h-4" />
+                {sortOrder === "asc" ? "A-Z" : "Z-A"}
+              </button>
+              <Link
+                href="/"
+                className="flex items-center gap-2 text-sm uppercase tracking-widest hover:text-gray-400 transition-colors"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Back
+              </Link>
+            </div>
+          </div>
+
+          {/* Search Bar */}
+          <div className="relative max-w-md">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+            <input
+              type="text"
+              placeholder="Search photographers..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-white/5 border border-white/10 rounded-none px-12 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-white/30 transition-colors"
+            />
           </div>
         </div>
       </div>
@@ -64,13 +80,15 @@ export default function PhotographersPage() {
           <div className="text-center py-16">
             <p className="text-white/60 text-lg">Loading photographers...</p>
           </div>
-        ) : photographers.length === 0 ? (
+        ) : filteredAndSortedPhotographers.length === 0 ? (
           <div className="text-center py-16">
-            <p className="text-white/60 text-lg">No photographers found. Add some in the admin panel!</p>
+            <p className="text-white/60 text-lg">
+              {searchQuery ? "No photographers found matching your search." : "No photographers found. Add some in the admin panel!"}
+            </p>
           </div>
         ) : (
           <div className="space-y-6">
-            {sortedPhotographers.map((photographer) => (
+            {filteredAndSortedPhotographers.map((photographer) => (
               <Link
                 key={photographer.id}
                 href={`/photographer/${photographer.id}`}
