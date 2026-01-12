@@ -225,22 +225,53 @@ function GalleryScene({
 }: Omit<InfiniteGalleryProps, "className" | "style">) {
   const [scrollVelocity, setScrollVelocity] = useState(0)
   const [autoPlay, setAutoPlay] = useState(true)
-  const [textures, setTextures] = useState<THREE.Texture[]>([])
+  const [textures, setTextures] = useState<(THREE.Texture | null)[]>([])
   const [texturesLoaded, setTexturesLoaded] = useState(false)
+  const [loadedCount, setLoadedCount] = useState(0)
   const lastInteraction = useRef(Date.now())
+
+  // Transform Cloudinary URLs for optimized loading
+  const optimizeCloudinaryUrl = (url: string): string => {
+    // Check if it's a Cloudinary URL
+    if (url.includes('cloudinary.com') && url.includes('/upload/')) {
+      // Add quality and size transformations
+      // q_75 = 75% quality, w_800 = max width 800px, f_auto = auto format
+      return url.replace('/upload/', '/upload/q_75,w_800,f_auto/')
+    }
+    return url
+  }
 
   const normalizedImages = useMemo(
     () => images.map((img) => (typeof img === "string" ? { src: img, alt: "" } : img)),
     [images],
   )
 
+  // Progressive texture loading - load one at a time
   useEffect(() => {
-    const loadAllTextures = async () => {
-      const loadedTextures = await Promise.all(normalizedImages.map((img) => loadTextureWithFallback(img.src)))
-      setTextures(loadedTextures)
+    // Initialize textures array with nulls
+    setTextures(new Array(normalizedImages.length).fill(null))
+
+    const loadTexturesProgressively = async () => {
+      for (let i = 0; i < normalizedImages.length; i++) {
+        const optimizedUrl = optimizeCloudinaryUrl(normalizedImages[i].src)
+        const texture = await loadTextureWithFallback(optimizedUrl)
+
+        setTextures(prev => {
+          const newTextures = [...prev]
+          newTextures[i] = texture
+          return newTextures
+        })
+        setLoadedCount(i + 1)
+
+        // Mark as loaded after first few textures so gallery can start showing
+        if (i >= 2) {
+          setTexturesLoaded(true)
+        }
+      }
       setTexturesLoaded(true)
     }
-    loadAllTextures()
+
+    loadTexturesProgressively()
   }, [normalizedImages])
 
   const materials = useMemo(() => Array.from({ length: visibleCount }, () => createClothMaterial()), [visibleCount])
