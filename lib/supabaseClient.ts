@@ -1,34 +1,26 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Get environment variables with fallback checks
+// Get environment variables
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 
-// Log for debugging (remove after fixing)
-if (typeof window !== 'undefined') {
-    console.log('Supabase Client Init:', {
-        hasUrl: !!supabaseUrl,
-        hasKey: !!supabaseAnonKey,
-        url: supabaseUrl
-    })
-}
-
 if (!supabaseUrl || !supabaseAnonKey) {
-    console.error('Missing Supabase credentials:', {
-        url: supabaseUrl,
-        hasKey: !!supabaseAnonKey
-    })
-    throw new Error('Missing Supabase environment variables. Check Netlify environment variable configuration.')
+    throw new Error('Missing Supabase environment variables. Check your configuration.')
 }
 
+// Public client - works in browser and server
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-// Admin client with service role key for admin operations
+// Admin client - ONLY for server-side (API routes, server components)
+// Don't initialize in browser since SUPABASE_SERVICE_ROLE_KEY is not a NEXT_PUBLIC_ variable
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
 
-export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey, {
-    auth: {
-        autoRefreshToken: false,
-        persistSession: false
-    }
-})
+// Only create admin client if service key is available (server-side only)
+export const supabaseAdmin = supabaseServiceKey
+    ? createClient(supabaseUrl, supabaseServiceKey, {
+        auth: {
+            autoRefreshToken: false,
+            persistSession: false
+        }
+    })
+    : supabase // Fallback to public client in browser (won't be used anyway)
