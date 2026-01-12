@@ -26,5 +26,7 @@ export default function RootLayout({
 }
 
 export const metadata = {
-  generator: "v0.app",
+  title: "TFPS X Photography",
+  description: "A collective of passionate photographers capturing compelling visual stories",
+  generator: "TFPS",
 }
