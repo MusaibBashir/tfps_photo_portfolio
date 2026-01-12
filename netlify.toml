@@ -3,7 +3,6 @@
   publish = ".next"
 
 [build.environment]
-  # Disable secrets scanning - all secrets are in environment variables, not in code
   SECRETS_SCAN_ENABLED = "false"
 
 [[headers]]
