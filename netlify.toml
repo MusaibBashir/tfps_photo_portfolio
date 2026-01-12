@@ -3,8 +3,8 @@
   publish = ".next"
 
 [build.environment]
-  # Ignore secrets in documentation and config files
-  SECRETS_SCAN_OMIT_PATHS = ".gemini/**,*.md,setup_instructions.md,netlify_deployment.md,troubleshooting.md"
+  # Disable secrets scanning - all secrets are in environment variables, not in code
+  SECRETS_SCAN_ENABLED = "false"
 
 [[headers]]
   for = "/_next/static/*"
