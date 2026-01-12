@@ -6,11 +6,6 @@ import { ArrowDown, Instagram, Menu, X } from "lucide-react"
 import Link from "next/link"
 import { getGalleryImages } from "@/lib/data"
 
-console.log('ENV CHECK:', {
-  url: process.env.NEXT_PUBLIC_SUPABASE_URL,
-  hasKey: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-})
-
 export default function PortfolioHome() {
   const aboutRef = useRef<HTMLDivElement>(null)
   const [menuOpen, setMenuOpen] = useState(false)
