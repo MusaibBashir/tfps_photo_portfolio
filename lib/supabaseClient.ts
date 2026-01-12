@@ -12,10 +12,6 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 // Admin client with service role key for admin operations
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
 
-if (!supabaseServiceKey) {
-    console.warn('SUPABASE_SERVICE_ROLE_KEY not found. Admin operations will fail.')
-}
-
 export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey, {
     auth: {
         autoRefreshToken: false,
