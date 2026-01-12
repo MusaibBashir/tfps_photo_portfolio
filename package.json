@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-  "dev": "next dev",
-  "build": "next build",
-  "start": "next start",
-  "lint": "next lint"
-},
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "dependencies": {
     "@expo/dom-webview": "latest",
     "@expo/metro-runtime": "latest",
@@ -41,6 +41,7 @@
     "@react-three/drei": "^9.114.0",
     "@react-three/fiber": "^8.16.0",
     "@react-three/postprocessing": "^3.0.4",
+    "@supabase/supabase-js": "^2.90.1",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "cmdk": "1.1.1",

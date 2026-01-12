@@ -1,10 +1,10 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import PhotoLightbox from "@/components/PhotoLightbox"
-import { photographersData } from "@/app/config/photographers-data"
+import { getPhotographerById, PhotographerWithWorks } from "@/lib/data"
 
 interface PhotographerPageProps {
   params: { id: string }
@@ -12,10 +12,32 @@ interface PhotographerPageProps {
 
 export default function PhotographerPage({ params }: PhotographerPageProps) {
   const id = params.id
-  const photographer = photographersData.find((p) => p.id === Number.parseInt(id))
+  const [photographer, setPhotographer] = useState<PhotographerWithWorks | null>(null)
+  const [loading, setLoading] = useState(true)
 
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
+
+  useEffect(() => {
+    loadPhotographer()
+  }, [id])
+
+  const loadPhotographer = async () => {
+    setLoading(true)
+    const data = await getPhotographerById(Number.parseInt(id))
+    setPhotographer(data)
+    setLoading(false)
+  }
+
+  if (loading) {
+    return (
+      <main className="bg-black min-h-screen text-white flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-xl text-white/60">Loading photographer...</p>
+        </div>
+      </main>
+    )
+  }
 
   if (!photographer) {
     return (
@@ -65,7 +87,7 @@ export default function PhotographerPage({ params }: PhotographerPageProps) {
           {/* Image */}
           <div className="aspect-square overflow-hidden">
             <img
-              src={photographer.image || "/placeholder.svg"}
+              src={photographer.profile_image_url || "/placeholder.svg"}
               alt={photographer.name}
               className="w-full h-full object-cover"
             />

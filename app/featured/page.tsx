@@ -1,26 +1,30 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import PhotoLightbox from "@/components/PhotoLightbox"
-
-const workImages = [
-  { id: 1, title: "Boundaries", category: "Landscape", photographer: "Mohit Kumar Majhi", src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135364/IMG_20250710_180738227_BURST000_COVER_2_qopsin.jpg", aspect: "landscape" },
-  { id: 2, title: "Bricks", category: "Portrait", photographer: "Mohit Kumar Majhi", src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135474/ranwamoment_20260103_201607_210_yzzaj7.webp", aspect: "portrait" },
-  { id: 3, title: "Addictive Fire", category: "Portrait", photographer: "Rahul Ranwa", src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135476/ranwamoment_20260103_201715_833_taqtni.webp", aspect: "landscape" },
-  { id: 4, title: "Innocence", category: "Portrait", photographer: "Rahul Ranwa", src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135375/DSC09647_1_ocd5fb.jpg", aspect: "landscape" },
-  { id: 5, title: "Rage", category: "Portrait", photographer: "Mohit Kumar Majhi", src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135364/IMG_20241221_042810243_HDR_PORTRAIT_wfzzae.jpg", aspect: "landscape" },
-  { id: 6, title: "Winter Soul", category: "Landscape", photographer: "Mohit Kumar Majhi", src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135365/IMG20231119062911-01_d87ajb.jpg", aspect: "landscape" },
-  { id: 7, title: "Radiant Smile", category: "Portrait", photographer: "Mohit Kumar Majhi", src: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768135375/DSC09618_1_a5nctv.jpg", aspect: "landscape" },
-]
+import { getFeaturedPhotos, FeaturedPhoto } from "@/lib/data"
 
 const categories = ["All", "Architecture", "Portrait", "Landscape", "Street", "Wildlife"]
 
 export default function WorkPage() {
+  const [workImages, setWorkImages] = useState<FeaturedPhoto[]>([])
+  const [loading, setLoading] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
+
+  useEffect(() => {
+    loadFeaturedPhotos()
+  }, [])
+
+  const loadFeaturedPhotos = async () => {
+    setLoading(true)
+    const data = await getFeaturedPhotos()
+    setWorkImages(data)
+    setLoading(false)
+  }
 
   const filteredWorks =
     selectedCategory === "All" ? workImages : workImages.filter((w) => w.category === selectedCategory)
@@ -74,28 +78,38 @@ export default function WorkPage() {
 
       {/* Masonry Grid */}
       <section className="max-w-7xl mx-auto px-6 md:px-8 py-16">
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-          {filteredWorks.map((work, index) => (
-            <div
-              key={work.id}
-              onClick={() => openLightbox(index)}
-              className="break-inside-avoid group relative overflow-hidden bg-white/5 border border-white/10 hover:border-white/30 transition-all duration-300 cursor-pointer"
-            >
-              <div className="overflow-hidden">
-                <img
-                  src={work.src || "/placeholder.svg"}
-                  alt={work.title}
-                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+        {loading ? (
+          <div className="text-center py-16">
+            <p className="text-white/60 text-lg">Loading featured photos...</p>
+          </div>
+        ) : filteredWorks.length === 0 ? (
+          <div className="text-center py-16">
+            <p className="text-white/60 text-lg">No featured photos found. Add some in the admin panel!</p>
+          </div>
+        ) : (
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+            {filteredWorks.map((work, index) => (
+              <div
+                key={work.id}
+                onClick={() => openLightbox(index)}
+                className="break-inside-avoid group relative overflow-hidden bg-white/5 border border-white/10 hover:border-white/30 transition-all duration-300 cursor-pointer"
+              >
+                <div className="overflow-hidden">
+                  <img
+                    src={work.src || "/placeholder.svg"}
+                    alt={work.title}
+                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                  <h3 className="text-lg font-bold tracking-tight">{work.title}</h3>
+                  <p className="text-xs text-white/70 uppercase tracking-widest">{work.category}</p>
+                </div>
               </div>
-              {/* Overlay on hover */}
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                <h3 className="text-lg font-bold tracking-tight">{work.title}</h3>
-                <p className="text-xs text-white/70 uppercase tracking-widest">{work.category}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Lightbox */}
@@ -103,7 +117,7 @@ export default function WorkPage() {
         <PhotoLightbox
           photos={filteredWorks.map(work => ({
             ...work,
-            category: work.photographer
+            category: work.photographer_name
           }))}
           currentIndex={currentPhotoIndex}
           onClose={closeLightbox}

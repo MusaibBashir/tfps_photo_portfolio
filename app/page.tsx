@@ -1,18 +1,27 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import InfiniteGallery from "../components/InfiniteGallery"
 import { ArrowDown, Instagram, Menu, X } from "lucide-react"
 import Link from "next/link"
-import { galleryImages } from "./config/gallery-images"
-
-// 1. Curate high-quality images for the 3D effect
-// Using dark/moody images works best with the "cloth" shader effect
-const heroImages = galleryImages
+import { getGalleryImages } from "@/lib/data"
 
 export default function PortfolioHome() {
   const aboutRef = useRef<HTMLDivElement>(null)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [galleryImages, setGalleryImages] = useState<{ src: string; alt: string }[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    loadGalleryImages()
+  }, [])
+
+  const loadGalleryImages = async () => {
+    setLoading(true)
+    const data = await getGalleryImages()
+    setGalleryImages(data.map(img => ({ src: img.src, alt: img.alt })))
+    setLoading(false)
+  }
 
   const scrollToContent = () => {
     aboutRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -99,23 +108,25 @@ export default function PortfolioHome() {
       {/* --- HERO SECTION (3D Gallery) --- */}
       <section className="relative w-full h-screen overflow-hidden">
         {/* The 3D Component */}
-        <div className="absolute inset-0 z-0">
-          <InfiniteGallery
-            images={heroImages}
-            speed={1.5} // Slightly faster for impact
-            visibleCount={12} // More density
-            fadeSettings={{
-              fadeIn: { start: 0.1, end: 0.3 },
-              fadeOut: { start: 0.6, end: 0.8 }, // Fade out earlier to keep focus on center
-            }}
-            blurSettings={{
-              blurIn: { start: 0.0, end: 0.2 },
-              blurOut: { start: 0.5, end: 0.8 },
-              maxBlur: 4.0,
-            }}
-            className="w-full h-full"
-          />
-        </div>
+        {!loading && galleryImages.length > 0 && (
+          <div className="absolute inset-0 z-0">
+            <InfiniteGallery
+              images={galleryImages}
+              speed={1.5} // Slightly faster for impact
+              visibleCount={12} // More density
+              fadeSettings={{
+                fadeIn: { start: 0.1, end: 0.3 },
+                fadeOut: { start: 0.6, end: 0.8 }, // Fade out earlier to keep focus on center
+              }}
+              blurSettings={{
+                blurIn: { start: 0.0, end: 0.2 },
+                blurOut: { start: 0.5, end: 0.8 },
+                maxBlur: 4.0,
+              }}
+              className="w-full h-full"
+            />
+          </div>
+        )}
 
         <div className="h-screen inset-0 pointer-events-none fixed flex items-center justify-center text-center px-3 mix-blend-exclusion text-white">
           <h1 className="font-serif text-4xl md:text-7xl tracking-tight">

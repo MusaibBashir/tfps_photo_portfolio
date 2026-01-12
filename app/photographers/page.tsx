@@ -1,57 +1,25 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { ArrowLeft, ArrowUpDown } from "lucide-react"
-
-interface Photographer {
-  id: number
-  name: string
-  specialty: string
-  bio: string
-  image: string
-}
-
-const photographers: Photographer[] = [
-  {
-    id: 1,
-    name: "Mohit Kumar Majhi",
-    specialty: "Smurf",
-    bio: "Dadaji and Inter IIT Photography Captain",
-    image: "https://res.cloudinary.com/de29hvv4d/image/upload/v1768140969/mohitdp_cdo6bk.jpg",
-  },
-  {
-    id: 2,
-    name: "Rahul Ranwa",
-    specialty: "Smurf",
-    bio: "Papaji and Inter IIT Filmmaking Captain",
-    image: "/fashion-photographer.jpg",
-  },
-  {
-    id: 3,
-    name: "Abhinav Bhardwaj",
-    specialty: "Oompa Loompa",
-    bio: "Kya matlab abhi maine socha nahi",
-    image: "/street-photographer.jpg",
-  },
-  {
-    id: 4,
-    name: "Pawan Manignandan",
-    specialty: "Oompa Loompa",
-    bio: "V-Log is better then S-Log",
-    image: "/wedding-photographer.jpg",
-  },
-  {
-    id: 5,
-    name: "Musaib Bin Bashir",
-    specialty: "Oompa Loompa",
-    bio: "Bohat time lag gaye ye banane mai",
-    image: "/wildlife-photographer.jpg",
-  },
-]
+import { getPhotographers, Photographer } from "@/lib/data"
 
 export default function PhotographersPage() {
+  const [photographers, setPhotographers] = useState<Photographer[]>([])
+  const [loading, setLoading] = useState(true)
   const [sortOrder, setSortOrder] = useState<"default" | "asc" | "desc">("default")
+
+  useEffect(() => {
+    loadPhotographers()
+  }, [])
+
+  const loadPhotographers = async () => {
+    setLoading(true)
+    const data = await getPhotographers()
+    setPhotographers(data)
+    setLoading(false)
+  }
 
   const sortedPhotographers = [...photographers].sort((a, b) => {
     if (sortOrder === "default") return 0
@@ -92,35 +60,45 @@ export default function PhotographersPage() {
 
       {/* Photographers Grid */}
       <section className="max-w-4xl mx-auto px-6 md:px-8 py-16">
-        <div className="space-y-6">
-          {sortedPhotographers.map((photographer) => (
-            <Link
-              key={photographer.id}
-              href={`/photographer/${photographer.id}`}
-              className="group block border border-white/10 hover:border-white/30 transition-all duration-300 overflow-hidden bg-white/5 hover:bg-white/10"
-            >
-              <div className="flex flex-col md:flex-row">
-                {/* Image */}
-                <div className="w-full md:w-48 h-48 overflow-hidden flex-shrink-0">
-                  <img
-                    src={photographer.image || "/placeholder.svg"}
-                    alt={photographer.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
+        {loading ? (
+          <div className="text-center py-16">
+            <p className="text-white/60 text-lg">Loading photographers...</p>
+          </div>
+        ) : photographers.length === 0 ? (
+          <div className="text-center py-16">
+            <p className="text-white/60 text-lg">No photographers found. Add some in the admin panel!</p>
+          </div>
+        ) : (
+          <div className="space-y-6">
+            {sortedPhotographers.map((photographer) => (
+              <Link
+                key={photographer.id}
+                href={`/photographer/${photographer.id}`}
+                className="group block border border-white/10 hover:border-white/30 transition-all duration-300 overflow-hidden bg-white/5 hover:bg-white/10"
+              >
+                <div className="flex flex-col md:flex-row">
+                  {/* Image */}
+                  <div className="w-full md:w-48 h-48 overflow-hidden flex-shrink-0">
+                    <img
+                      src={photographer.profile_image_url || "/placeholder.svg"}
+                      alt={photographer.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
 
-                {/* Content */}
-                <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
-                  <h3 className="text-xl md:text-2xl font-bold tracking-tight mb-2 group-hover:text-gray-300 transition-colors">
-                    {photographer.name}
-                  </h3>
-                  <p className="text-sm uppercase tracking-widest text-white/60 mb-4">{photographer.specialty}</p>
-                  <p className="text-sm md:text-base text-white/70 leading-relaxed">{photographer.bio}</p>
+                  {/* Content */}
+                  <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
+                    <h3 className="text-xl md:text-2xl font-bold tracking-tight mb-2 group-hover:text-gray-300 transition-colors">
+                      {photographer.name}
+                    </h3>
+                    <p className="text-sm uppercase tracking-widest text-white/60 mb-4">{photographer.specialty}</p>
+                    <p className="text-sm md:text-base text-white/70 leading-relaxed">{photographer.bio}</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
     </main>
   )
