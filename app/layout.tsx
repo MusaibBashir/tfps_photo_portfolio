@@ -29,4 +29,8 @@ export const metadata = {
   title: "TFPS X Photography",
   description: "A collective of passionate photographers capturing compelling visual stories",
   generator: "TFPS",
+  icons: {
+    icon: "/tfps-icon.jpg",
+    apple: "/tfps-icon.jpg",
+  },
 }
