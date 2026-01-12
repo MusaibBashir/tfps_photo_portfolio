@@ -109,7 +109,7 @@ const createClothMaterial = () => {
         
         vec3 pos = position;
         
-        float curveIntensity = scrollForce * 0.3;
+        float curveIntensity = scrollForce * 0.4;
         float distanceFromCenter = length(pos.xy);
         float curve = distanceFromCenter * distanceFromCenter * curveIntensity;
         
